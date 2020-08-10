@@ -2,6 +2,8 @@ package pl.com.konrad.calendar;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 public class Printer {
 //    WYDRUK:
@@ -11,6 +13,7 @@ public class Printer {
 
     private LocalDate date;
     private LocalDate[][] datesOfMonth;
+    private Locale locale = new Locale("pl","PL");
 
     public Printer(LocalDate date, LocalDate[][] datesOfMonth) {
         this.date = date;
@@ -61,7 +64,8 @@ public class Printer {
     }
 
     private void printDate() {
-        System.out.print(date.getDayOfWeek() + ", " + date.getDayOfMonth() + " " + date.getMonth() + " " + date.getYear());
+        System.out.print(date.getDayOfWeek().getDisplayName(TextStyle.FULL,locale) + ", " + date.getDayOfMonth() + " " + date.getMonth().getDisplayName(TextStyle.FULL,locale) +
+                " " + date.getYear());
     }
 }
 
