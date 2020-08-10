@@ -59,7 +59,7 @@ public class Printer {
     private void printDayNames() {
         System.out.print("|");
         for (int i = 1; i <= 7; i++) {
-            System.out.print(DayOfWeek.of(i).toString().substring(0, 3) + "|");
+            System.out.print(DayOfWeek.of(i).getDisplayName(TextStyle.FULL,locale).substring(0, 3) + "|");
         }
     }
 
