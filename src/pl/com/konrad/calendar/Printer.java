@@ -18,13 +18,25 @@ public class Printer {
     }
 
     public void print() {
+        printDate();
+        System.out.println();
         printDayNames();
         System.out.println();
         for (int row = 0; row < datesOfMonth[0].length; row++) {
             printHorizontalLine();
             System.out.print("|");
             for (int col = 0; col < datesOfMonth.length; col++) {
-                System.out.print(" " +"x" +" |");
+                if (col == CalendarLogic.getColIndexOfFirstDay(date) && row == 0){
+                    if (CalendarLogic.getFirstDayOfCurrentMonth(date).getDayOfMonth()<10) {
+                        System.out.print(" " + CalendarLogic.getFirstDayOfCurrentMonth(date).getDayOfMonth() + " |");
+                    }
+                    else {
+                        System.out.print(CalendarLogic.getFirstDayOfCurrentMonth(date).getDayOfMonth() + " |");
+                    }
+                }
+                else {
+                    System.out.print(" " + "x" + " |");
+                }
             }
             System.out.println();
         }
@@ -43,9 +55,13 @@ public class Printer {
 
     private void printDayNames() {
         System.out.print("|");
-        for (int i = 1; i<=7; i++) {
-            System.out.print(DayOfWeek.of(i).toString().substring(0,3) + "|");
+        for (int i = 1; i <= 7; i++) {
+            System.out.print(DayOfWeek.of(i).toString().substring(0, 3) + "|");
         }
+    }
+
+    private void printDate() {
+        System.out.print(date.getDayOfWeek() + ", " + date.getDayOfMonth() + " " + date.getMonth() + " " + date.getYear());
     }
 }
 
