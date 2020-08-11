@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class CalendarLogic {
     public static LocalDate getDate() {
         Scanner scanner = new Scanner(System.in);
-        LocalDate date = null;
+        LocalDate date;
 
         System.out.println("Podaj datę w formacie (dd-mm-RRRR): ");
         String userDate = scanner.nextLine();
