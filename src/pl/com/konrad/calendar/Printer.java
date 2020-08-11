@@ -6,10 +6,6 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 
 public class Printer {
-//    WYDRUK:
-//    1. data uzytkownika
-//    2. dni tygodnia poza tablica
-//    3. rysowanie tablicy
 
     private LocalDate date;
     private LocalDate[][] datesOfMonth;

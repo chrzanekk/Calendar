@@ -15,14 +15,6 @@ public class Calendar {
         return calendar;
     }
 
-    public int getRowNumbers() {
-        return calendar[0].length;
-    }
-
-    public int getColNumbers() {
-        return calendar.length;
-    }
-
     public void setup() {
         LocalDate beginningDate = CalendarLogic.getBeginningDate(date).minusDays(1);
         for (int row = 0; row < calendar[0].length; row++) {
@@ -32,9 +24,4 @@ public class Calendar {
                 }
         }
     }
-
-
-//    określić dzień tygodnia
-//    określić kolumne pierwszego dnia miesiaca oraz najwcześniejszy dzień poprzedniego miesiąca (lewy górny róg)
-//    wypełnić tablice
 }
