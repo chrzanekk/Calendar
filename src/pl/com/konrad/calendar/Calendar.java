@@ -1,6 +1,5 @@
 package pl.com.konrad.calendar;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class Calendar {
@@ -16,15 +15,23 @@ public class Calendar {
         return calendar;
     }
 
-    public void setup() {
-        for (int row = 0; row < calendar[0].length; row++) {
-            for (int col = 0; col < calendar.length; col++) {
-
-            }
-        }
+    public int getRowNumbers() {
+        return calendar[0].length;
     }
 
+    public int getColNumbers() {
+        return calendar.length;
+    }
 
+    public void setup() {
+        LocalDate beginningDate = CalendarLogic.getBeginningDate(date).minusDays(1);
+        for (int row = 0; row < calendar[0].length; row++) {
+            for (int col = 0; col < calendar.length; col++) {
+                beginningDate = beginningDate.plusDays(1);
+                calendar[col][row] = beginningDate;
+                }
+        }
+    }
 
 
 //    określić dzień tygodnia
