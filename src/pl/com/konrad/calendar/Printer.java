@@ -10,7 +10,7 @@ public class Printer {
     private LocalDate date;
     private LocalDate[][] datesOfMonth;
     private Locale locale = new Locale("pl", "PL");
-
+//poprawić parametry (przekazać calendar)
     public Printer(LocalDate date, LocalDate[][] datesOfMonth) {
         this.date = date;
         this.datesOfMonth = datesOfMonth;
@@ -19,13 +19,12 @@ public class Printer {
     public void print() {
         printDate();
         System.out.println();
-//        printMonthYear();
-//        System.out.println();
         printDayNames();
         System.out.println();
         for (int row = 0; row < datesOfMonth[0].length; row++) {
             printHorizontalLine();
             System.out.print("|");
+//            extract do metody z opisem co robi sout
             for (LocalDate[] localDates : datesOfMonth) {
                 if (localDates[row].getDayOfMonth() < 10 && !localDates[row].equals(date) && localDates[row].getMonthValue() < date.getMonthValue()) {
                     System.out.print(" (" + localDates[row].getDayOfMonth() + ")|");

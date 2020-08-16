@@ -7,11 +7,8 @@ public class Main {
     public static void main(String[] args) {
         LocalDate date = CalendarLogic.getDate();
         Calendar calendar = new Calendar(date);
-        calendar.setup();
 
         Printer printer = new Printer(date, calendar.getCalendar());
         printer.print();
-
     }
-
 }

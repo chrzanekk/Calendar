@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class CalendarLogic {
+    //    to wyjebac z logiki do maina
     public static LocalDate getDate() {
         Scanner scanner = new Scanner(System.in);
         LocalDate date;
@@ -22,19 +23,22 @@ public class CalendarLogic {
         return date;
     }
 
-
+    //prywatna
     public static int getColIndexOfDate(LocalDate date) {
         return date.getDayOfWeek().getValue() - 1;
     }
 
+    //prywatna
     public static int getColIndexOfFirstDay(LocalDate date) {
         return getColIndexOfDate(getFirstDayOfCurrentMonth(date));
     }
 
+    //prywatna
     public static LocalDate getFirstDayOfCurrentMonth(LocalDate date) {
         return date.minusDays(date.getDayOfMonth() - 1);
     }
 
+    //publiczna
     public static LocalDate getBeginningDate(LocalDate date) {
         return getFirstDayOfCurrentMonth(date).minusDays(getColIndexOfFirstDay(date));
     }
