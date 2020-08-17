@@ -7,8 +7,7 @@ public class Calendar {
 
     public Calendar(LocalDate date) {
         this.date = date;
-        CalendarLogic calendarLogic = new CalendarLogic();
-        setup();
+        CalendarLogic.setup(date, calendar);
     }
 
     private LocalDate date;
@@ -17,14 +16,12 @@ public class Calendar {
         return calendar;
     }
 
-//do logiki
-    private void setup() {
-        LocalDate beginningDate = CalendarLogic.getBeginningDate(date).minusDays(1);
-        for (int row = 0; row < calendar[0].length; row++) {
-            for (int col = 0; col < calendar.length; col++) {
-                beginningDate = beginningDate.plusDays(1);
-                calendar[col][row] = beginningDate;
-                }
-        }
+    public int getRowLength() {
+        return calendar[0].length;
     }
+
+    public  int getColLength() {
+        return calendar.length;
+    }
+
 }

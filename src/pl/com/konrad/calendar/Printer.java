@@ -8,12 +8,12 @@ import java.util.Locale;
 public class Printer {
 
     private LocalDate date;
-    private LocalDate[][] datesOfMonth;
+    private Calendar calendar;
     private Locale locale = new Locale("pl", "PL");
-//poprawić parametry (przekazać calendar)
-    public Printer(LocalDate date, LocalDate[][] datesOfMonth) {
+
+    public Printer(LocalDate date, Calendar calendar) {
         this.date = date;
-        this.datesOfMonth = datesOfMonth;
+        this.calendar = calendar;
     }
 
     public void print() {
@@ -21,38 +21,41 @@ public class Printer {
         System.out.println();
         printDayNames();
         System.out.println();
-        for (int row = 0; row < datesOfMonth[0].length; row++) {
+        printDaysOfMonth();
+        printHorizontalLine();
+    }
+
+    private void printDaysOfMonth() {
+        for (int row = 0; row < calendar.getRowLength(); row++) {
             printHorizontalLine();
             System.out.print("|");
-//            extract do metody z opisem co robi sout
-            for (LocalDate[] localDates : datesOfMonth) {
-                if (localDates[row].getDayOfMonth() < 10 && !localDates[row].equals(date) && localDates[row].getMonthValue() < date.getMonthValue()) {
-                    System.out.print(" (" + localDates[row].getDayOfMonth() + ")|");
-                } else if (localDates[row].getDayOfMonth() < 10 && !localDates[row].equals(date) && localDates[row].getMonthValue() > date.getMonthValue()) {
-                    System.out.print("[" + localDates[row].getDayOfMonth() + "] |");
-                } else if (localDates[row].getDayOfMonth() >= 10 && !localDates[row].equals(date) && localDates[row].getMonthValue() < date.getMonthValue()) {
-                    System.out.print("(" + localDates[row].getDayOfMonth() + ")|");
-                } else if (localDates[row].getDayOfMonth() >= 10 && !localDates[row].equals(date) && localDates[row].getMonthValue() > date.getMonthValue()) {
-                    System.out.print("[" + localDates[row].getDayOfMonth() + "]|");
-                } else if (localDates[row].getDayOfMonth() >= 10 && !localDates[row].equals(date) && localDates[row].getMonthValue() == date.getMonthValue()) {
-                    System.out.print(" " + localDates[row].getDayOfMonth() + " |");
-                } else if (localDates[row].getDayOfMonth() < 10 && localDates[row].equals(date) && localDates[row].getMonthValue() == date.getMonthValue()) {
-                    System.out.print(" " + localDates[row].getDayOfMonth() + "* |");
-                } else if (localDates[row].getDayOfMonth() >= 10 && localDates[row].equals(date) && localDates[row].getMonthValue() == date.getMonthValue()) {
-                    System.out.print(" " + localDates[row].getDayOfMonth() + "*|");
+            for (int col = 0; col < calendar.getColLength(); col++) {
+                if (calendar.getCalendar()[col][row].getDayOfMonth() < 10 && !calendar.getCalendar()[col][row].equals(date) && calendar.getCalendar()[col][row].getMonthValue() < date.getMonthValue()) {
+                    System.out.print(" (" + calendar.getCalendar()[col][row].getDayOfMonth() + ")|");
+                } else if (calendar.getCalendar()[col][row].getDayOfMonth() < 10 && !calendar.getCalendar()[col][row].equals(date) && calendar.getCalendar()[col][row].getMonthValue() > date.getMonthValue()) {
+                    System.out.print("[" + calendar.getCalendar()[col][row].getDayOfMonth() + "] |");
+                } else if (calendar.getCalendar()[col][row].getDayOfMonth() >= 10 && !calendar.getCalendar()[col][row].equals(date) && calendar.getCalendar()[col][row].getMonthValue() < date.getMonthValue()) {
+                    System.out.print("(" + calendar.getCalendar()[col][row].getDayOfMonth() + ")|");
+                } else if (calendar.getCalendar()[col][row].getDayOfMonth() >= 10 && !calendar.getCalendar()[col][row].equals(date) && calendar.getCalendar()[col][row].getMonthValue() > date.getMonthValue()) {
+                    System.out.print("[" + calendar.getCalendar()[col][row].getDayOfMonth() + "]|");
+                } else if (calendar.getCalendar()[col][row].getDayOfMonth() >= 10 && !calendar.getCalendar()[col][row].equals(date) && calendar.getCalendar()[col][row].getMonthValue() == date.getMonthValue()) {
+                    System.out.print(" " + calendar.getCalendar()[col][row].getDayOfMonth() + " |");
+                } else if (calendar.getCalendar()[col][row].getDayOfMonth() < 10 && calendar.getCalendar()[col][row].equals(date) && calendar.getCalendar()[col][row].getMonthValue() == date.getMonthValue()) {
+                    System.out.print(" " + calendar.getCalendar()[col][row].getDayOfMonth() + "* |");
+                } else if (calendar.getCalendar()[col][row].getDayOfMonth() >= 10 && calendar.getCalendar()[col][row].equals(date) && calendar.getCalendar()[col][row].getMonthValue() == date.getMonthValue()) {
+                    System.out.print(" " + calendar.getCalendar()[col][row].getDayOfMonth() + "*|");
                 } else {
-                    System.out.print(" " + localDates[row].getDayOfMonth() + "  |");
+                    System.out.print(" " + calendar.getCalendar()[col][row].getDayOfMonth() + "  |");
                 }
             }
             System.out.println();
         }
-        printHorizontalLine();
     }
 
     private void printHorizontalLine() {
         char minus = '-';
         System.out.print(minus);
-        for (int i = 0; i < datesOfMonth.length; i++) {
+        for (int i = 0; i < calendar.getCalendar().length; i++) {
             for (int j = 0; j <= 4; j++)
                 System.out.print(minus);
         }
@@ -69,10 +72,6 @@ public class Printer {
     private void printDate() {
         System.out.print(date.getDayOfWeek().getDisplayName(TextStyle.FULL, locale) + ", " + date.getDayOfMonth() + " " + date.getMonth().getDisplayName(TextStyle.FULL, locale) +
                 " " + date.getYear());
-    }
-
-    private void printMonthYear() {
-        System.out.print(date.getMonth().getDisplayName(TextStyle.FULL,locale) + " "+ date.getYear());
     }
 }
 
