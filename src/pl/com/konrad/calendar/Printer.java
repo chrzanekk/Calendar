@@ -12,6 +12,7 @@ public class Printer {
     private Locale locale = new Locale("pl", "PL");
 
     public Printer(LocalDate date, Calendar calendar) {
+//        usunac date i pobrac z kalendarza
         this.date = date;
         this.calendar = calendar;
     }

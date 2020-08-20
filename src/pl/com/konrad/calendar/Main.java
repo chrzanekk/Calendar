@@ -12,7 +12,6 @@ public class Main {
 
         Calendar calendar = new Calendar(date);
         Printer printer = new Printer(date, calendar);
-
         printer.print();
 
     }
@@ -23,9 +22,9 @@ public class Main {
 
         System.out.println("Podaj datę w formacie (dd-mm-RRRR): ");
         String userDate = scanner.nextLine();
+
         try {
             date = LocalDate.parse(userDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
         } catch (DateTimeParseException e) {
             System.out.println("Zły format daty.");
             date = getDate();

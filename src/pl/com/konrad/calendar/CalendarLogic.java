@@ -3,6 +3,7 @@ package pl.com.konrad.calendar;
 import java.time.LocalDate;
 
 public class CalendarLogic {
+//konstruktor i przeniesc tablice
 
     public static void setup(LocalDate date,LocalDate[][] calendar) {
         LocalDate beginningDate = CalendarLogic.getBeginningDate(date).minusDays(1);
