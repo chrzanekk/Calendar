@@ -8,10 +8,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        LocalDate date = getDate();
-
-        Calendar calendar = new Calendar(date);
-        Printer printer = new Printer(date, calendar);
+        Calendar calendar = new Calendar(getDate());
+        Printer printer = new Printer(calendar);
         printer.print();
 
     }

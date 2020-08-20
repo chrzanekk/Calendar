@@ -3,9 +3,16 @@ package pl.com.konrad.calendar;
 import java.time.LocalDate;
 
 public class CalendarLogic {
-//konstruktor i przeniesc tablice
+    private final LocalDate date;
+    private LocalDate[][] calendar = new LocalDate[7][6];
 
-    public static void setup(LocalDate date,LocalDate[][] calendar) {
+    public CalendarLogic(LocalDate date) {
+        this.date = date;
+    }
+
+
+
+    public LocalDate[][] setup() {
         LocalDate beginningDate = CalendarLogic.getBeginningDate(date).minusDays(1);
         for (int row = 0; row < calendar[0].length; row++) {
             for (int col = 0; col < calendar.length; col++) {
@@ -13,9 +20,10 @@ public class CalendarLogic {
                 calendar[col][row] = beginningDate;
             }
         }
+        return calendar;
     }
 
-    public static LocalDate getBeginningDate(LocalDate date) {
+    private static LocalDate getBeginningDate(LocalDate date) {
         return getFirstDayOfCurrentMonth(date).minusDays(getColIndexOfFirstDay(date));
     }
 
