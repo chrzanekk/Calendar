@@ -16,16 +16,17 @@ public class Main {
 
     public static LocalDate getDate() {
         Scanner scanner = new Scanner(System.in);
-        LocalDate date;
-
-        System.out.println("Podaj datę w formacie (dd-mm-RRRR): ");
-        String userDate = scanner.nextLine();
-
-        try {
-            date = LocalDate.parse(userDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        } catch (DateTimeParseException e) {
-            System.out.println("Zły format daty.");
-            date = getDate();
+        LocalDate date = null;
+        boolean isDateCorrect = false;
+        while (!isDateCorrect) {
+            System.out.println("Podaj datę w formacie (dd-mm-RRRR): ");
+            String userDate = scanner.nextLine();
+            try {
+                date = LocalDate.parse(userDate, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+                isDateCorrect = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("Zły format daty.");
+            }
         }
         return date;
     }
