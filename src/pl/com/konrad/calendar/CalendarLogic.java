@@ -22,7 +22,7 @@ public class CalendarLogic {
         }
         return calendar;
     }
-
+//usunac static
     private static LocalDate getBeginningDate(LocalDate date) {
         return getFirstDayOfCurrentMonth(date).minusDays(getColIndexOfFirstDay(date));
     }

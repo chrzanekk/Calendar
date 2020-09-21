@@ -7,7 +7,7 @@ import java.util.Locale;
 
 public class Printer {
     private Calendar calendar;
-    private Locale locale = new Locale("pl", "PL");
+    private final static Locale LOCALE = new Locale("pl", "PL");
 
     public Printer(Calendar calendar) {
         this.calendar = calendar;
@@ -62,13 +62,14 @@ public class Printer {
     private void printDayNames() {
         System.out.print("|");
         for (int i = 1; i <= 7; i++) {
-            System.out.print(DayOfWeek.of(i).getDisplayName(TextStyle.FULL, locale).substring(0, 3) + ".|");
+            System.out.print(DayOfWeek.of(i).getDisplayName(TextStyle.FULL, LOCALE).substring(0, 3) + ".|");
         }
     }
 
     private void printDate() {
         LocalDate date = calendar.getDate();
-        System.out.print(date.getDayOfWeek().getDisplayName(TextStyle.FULL, locale) + ", " + date.getDayOfMonth() + " " + date.getMonth().getDisplayName(TextStyle.FULL, locale) +
+        System.out.print(date.getDayOfWeek().getDisplayName(TextStyle.FULL, LOCALE) + ", " + date.getDayOfMonth() +
+                " " + date.getMonth().getDisplayName(TextStyle.FULL, LOCALE) +
                 " " + date.getYear());
     }
 }

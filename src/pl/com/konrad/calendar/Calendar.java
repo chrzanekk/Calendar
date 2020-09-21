@@ -20,6 +20,8 @@ public class Calendar {
     public LocalDate[][] getCalendar() {
         return calendar;
     }
+//    metoda pobierajaca pozycje z tablicy.
+
     public int getRowLength() {
         return calendar[0].length;
     }
